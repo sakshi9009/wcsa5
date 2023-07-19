@@ -3,6 +3,7 @@ package dataDrivenFramework;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -13,7 +14,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class Flib {
 	// to store generic reusable methods
-	//all the methods are nin static
+	//all the methods are non static
 	
 	
 	//it is use to read the data from excel sheet
@@ -53,5 +54,18 @@ public class Flib {
 		FileOutputStream fos = new FileOutputStream(excelPath);
 		wb.write(fos);
 	}
+	
+	//it is use to read the data from property file
+		public String readPropertyData(String propPath,String key) throws IOException
+		{
+			 FileInputStream fis = new FileInputStream(propPath);
+			 //create a obj of properties class
+			 Properties prop = new Properties();
+			 //make a file ready for read
+			 prop.load(fis);
+			 //read the particular key from file
+	         String data=prop.getProperty(key);
+			 return data;
+		}
 
 }
